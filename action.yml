@@ -19,5 +19,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.workbook_dir}}
-    - ${{ inputs.env }}
     - ${{ inputs.repo_token }}
