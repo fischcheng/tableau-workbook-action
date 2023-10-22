@@ -37,7 +37,6 @@ class TableauWorkbookError(Exception):
 
 
 def get_full_schema(project_dir):
-    print(project_dir)
     from mergedeep import merge, Strategy
 
     full_schema = None
@@ -117,7 +116,7 @@ def submit_workbook(workbook_schema, file_path):
                 else None
             )
 
-        tableau_api.publish_workbook(
+       workbook = tableau_api.publish_workbook(
             name=workbook_schema["name"],
             project_id=project_id,
             file_path=file_path,
@@ -126,7 +125,7 @@ def submit_workbook(workbook_schema, file_path):
             tags=tags,
             description=description,
         )
-        return project_path
+        return project_path, workbook
 
 
 def main(args):
@@ -155,12 +154,12 @@ def main(args):
                     logging.info(
                         f"Publishing workbook : { workbook_schema['project_path'] + '/' + workbook_schema['name'] } to Tableau"
                     )
-                    project_path = submit_workbook(
+                    project_path, workbook = submit_workbook(
                         workbook_schema, args.workbook_dir + "/" + file
                     )
                     logging.info(f"Workbook : { project_path } Published to Tableau")
                     list_message.append(
-                        f"Workbook : { project_path } published to Tableau  :heavy_check_mark:"
+                        f"Workbook : { workbook_schema['name'] } published to { project_path }]  :heavy_check_mark:"
                     )
                 except Exception as e:
                     logging.info(
