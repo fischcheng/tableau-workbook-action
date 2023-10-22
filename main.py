@@ -135,20 +135,19 @@ def main(args):
     full_schema_config = get_full_schema(args.workbook_dir)
 
     addmodified_files = get_addmodified_files(args.repo_token)
-    addmodified_files = [
-        file.lstrip(args.workbook_dir)
-        for file in addmodified_files
-        if args.workbook_dir in file and ".twb" in file
-    ]
-    print(addmodified_files)
+    twbfiles = []
+    for file in addmodified_files:
+        if args.workbook_dir in file and ".twb" in file:
+            split = file.split("/")
+            twbfiles.append(split[-1])
+        continue
     if len(addmodified_files) > 0:
         logging.info("Add & Modified Files:")
-        logging.info(addmodified_files)
+        logging.info(twbfiles)
 
         status = True
         list_message = list()
-        for file in addmodified_files:
-            print(full_schema_config["workbooks"].keys())
+        for file in twbfiles:
             if file in full_schema_config["workbooks"].keys():
                 workbook_schema = full_schema_config["workbooks"][file]
                 print(workbook_schema)
