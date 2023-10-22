@@ -88,7 +88,7 @@ def submit_workbook(workbook_schema, file_path):
         os.environ["SITE_ID"],
     )
     project_path = workbook_schema["project_path"]
-    project_id = tableau_api.get_project_id_by_name("project_path")
+    project_id = tableau_api.get_project_id_by_name(project_path)
     if project_id:
         hidden_views = None
         show_tabs = False
@@ -153,7 +153,7 @@ def main(args):
                 print(workbook_schema)
                 try:
                     logging.info(
-                        "Publishing workbook : { workbook_schema['project_path'] + '/' + workbook_schema['name'] } to Tableau"
+                        f"Publishing workbook : { workbook_schema['project_path'] + '/' + workbook_schema['name'] } to Tableau"
                     )
                     project_path = submit_workbook(
                         workbook_schema, args.workbook_dir + "/" + file
