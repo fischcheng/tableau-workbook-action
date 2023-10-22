@@ -8,9 +8,6 @@ inputs:
   workbook_dir:
     description: 'Path to you workbook directory'
     required: true
-  env:
-    description: 'Target environments'
-    required: true
   repo_token:
     description: 'Repo access token'
     required: true

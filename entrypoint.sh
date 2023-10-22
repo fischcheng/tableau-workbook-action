@@ -1,8 +1,7 @@
 #!/bin/sh
 
 echo "Workbook Directory : $1"
-echo "Environment : $2"
-echo "Repo Token : $3"
+echo "Repo Token : $2"
 
 cp -r /action/* /github/workspace/
 
