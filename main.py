@@ -148,8 +148,10 @@ def main(args):
         status = True
         list_message = list()
         for file in addmodified_files:
+            print(full_schema_config["workbooks"].keys())
             if file in full_schema_config["workbooks"].keys():
                 workbook_schema = full_schema_config["workbooks"][file]
+                print(workbook_schema)
                 try:
                     logging.info(
                         "Publishing workbook : { workbook_schema['project_path'] + '/' + workbook_schema['name'] } to Tableau"
@@ -174,7 +176,6 @@ def main(args):
                 logging.info(
                     f"Skip publishing workbook { file } not listed in config files"
                 )
-        print(list_message)
         comment_pr(args.repo_token, "\n".join(list_message))
         if status is False:
             # raise TableauWorkbookError("\n".join(list_message))
