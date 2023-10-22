@@ -116,7 +116,7 @@ def submit_workbook(workbook_schema, file_path):
                 else None
             )
 
-       workbook = tableau_api.publish_workbook(
+        workbook = tableau_api.publish_workbook(
             name=workbook_schema["name"],
             project_id=project_id,
             file_path=file_path,
