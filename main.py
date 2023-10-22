@@ -149,7 +149,6 @@ def main(args):
         for file in twbfiles:
             if file in full_schema_config["workbooks"].keys():
                 workbook_schema = full_schema_config["workbooks"][file]
-                print(workbook_schema)
                 try:
                     logging.info(
                         f"Publishing workbook : { workbook_schema['project_path'] + '/' + workbook_schema['name'] } to Tableau"
@@ -157,7 +156,9 @@ def main(args):
                     project_path, workbook = submit_workbook(
                         workbook_schema, args.workbook_dir + "/" + file
                     )
-                    logging.info(f"Workbook : { project_path } Published to Tableau")
+                    logging.info(
+                        f"Workbook : { workbook_schema['name'] } published to { project_path }"
+                    )
                     list_message.append(
                         f"Workbook : { workbook_schema['name'] } published to { project_path }]  :heavy_check_mark:"
                     )
