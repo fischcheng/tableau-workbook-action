@@ -140,7 +140,7 @@ def main(args):
         for file in addmodified_files
         if args.workbook_dir in file and ".twb" in file
     ]
-
+    print(addmodified_files)
     if len(addmodified_files) > 0:
         logging.info("Add & Modified Files:")
         logging.info(addmodified_files)
@@ -174,7 +174,7 @@ def main(args):
                 logging.info(
                     f"Skip publishing workbook { file } not listed in config files"
                 )
-
+        print(list_message)
         comment_pr(args.repo_token, "\n".join(list_message))
         if status is False:
             # raise TableauWorkbookError("\n".join(list_message))
