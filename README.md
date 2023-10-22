@@ -10,7 +10,6 @@ Action Environment Variables:
 
 Action Arguments :
 - **workbook_dir**: *Workbook dir in repo*
-- **env**: *Target environment*
 - **repo_token**: *Repo access token*
 
 
@@ -74,7 +73,6 @@ jobs:
           TABLEAU_URL: ${{ secrets.TABLEAU_URL }}
         with:
           workbook_dir: tests/workbooks
-          env: staging
           repo_token: ${{ secrets.GITHUB_TOKEN }}
 
 ```
